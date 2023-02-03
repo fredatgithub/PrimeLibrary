@@ -79,41 +79,6 @@ namespace PrimeLibrary
       return true;
     }
 
-    /// <summary>Calculate if a big Int number is prime.</summary>
-    /// <param name="number">The number to calculate its primality.</param>
-    /// <returns>Returns True if the number is a prime, False otherwise.</returns>
-    public static bool IsPrime(BigInt number)
-    {
-      BigInt tmpNumber = 0;
-      BigInt.Divide(number, 2, out tmpNumber);
-      if (tmpNumber == 0)
-      {
-        return false;
-      }
-
-      if (number == 2 || number == 3 || number == 5)
-      {
-        return true;
-      }
-
-      if (number % 2 == 0 || number % 3 == 0 || number % 5 == 0)
-      {
-        return false;
-      }
-
-      //var sqrt = Math.Pow(Math.E, BigInt.Log(number) / 2);
-      //BigInt squareRoot = BigInt.Pow(number, (int)BigInt.Log(number)); //Math.Exp(BigInteger.Log(number) / 2);
-      //for (BigInteger divisor = 7; divisor < squareRoot; divisor += 2)
-      //{
-      //  if (number % divisor == 0)
-      //  {
-      //    return false;
-      //  }
-      //}
-
-      return true;
-    }
-
     public static BigInteger Sqrt(this BigInteger n)
     {
       if (n == 0) return 0;
