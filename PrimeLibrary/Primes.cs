@@ -144,11 +144,6 @@ namespace PrimeLibrary
     /// <returns>True if number and number + 2 and number + 4 are all prime numbers, false otherwise.</returns>
     public static bool IsPrimeTriplet(int number)
     {
-      if (number.ToString().Substring(number.ToString().Length - 1, 1) != "7")
-      {
-        return false;
-      }
-
       if (IsPrime(number) && IsPrime(number + 2) && IsPrime(number + 4))
       {
         return true;
@@ -157,6 +152,103 @@ namespace PrimeLibrary
       return false;
     }
 
+    /// <summary>
+    /// Check if a number and number + 2 and number + 4 and number + 6 are all prime numbers.
+    /// </summary>
+    /// <param name="number">The number to check.</param>
+    /// <returns>True if number and number + 2 and number + 4 and number + 6 are all prime numbers, false otherwise.</returns>
+    public static bool IsPrimeQuadruplet(int number)
+    {
+      if (IsPrime(number) && IsPrime(number + 2) && IsPrime(number + 6) && IsPrime(number + 8))
+      {
+        return true;
+      }
+
+      return false;
+    }
+
+    /// <summary>
+    /// Check if a number and number + 4 are both prime numbers.
+    /// </summary>
+    /// <param name="number">The number to check.</param>
+    /// <returns>True if number and number + 4 are all prime numbers, false otherwise.</returns>
+    public static bool IsCousinPrime(int number)
+    {
+      if (IsPrime(number) && IsPrime(number + 4))
+      {
+        return true;
+      }
+
+      return false;
+    }
+
+    public static bool IsCircularPrime(int number)
+    {
+      if (number < 1)
+      {
+        return false;
+      }
+
+      if (number < 9 && IsPrime(number))
+      {
+        return true;
+      }
+
+      foreach (var item in GetCircular(number))
+      {
+
+      }
+
+      return false;
+    }
+
+    public static List<int> GetCircular(int number)
+    {
+      List<int> result = new List<int>();
+      if (number < 9)
+      {
+        result.Add(number);
+      }
+      else if (number < 100)
+      {
+        result.Add(number);
+        if (number.ToString().Substring(0, 1) != number.ToString().Substring(1, 1))
+        {
+          result.Add(int.Parse(number.ToString().Substring(1, 1) + number.ToString().Substring(0, 1)));
+        }
+      }
+      else
+      {
+        // 123 231 312
+        for (int i = 0; i < number.ToString().Length - 1; i++)
+        {
+          // TODO
+          result.Add(int.Parse(number.ToString().Substring(i, number.ToString().Length - 1)));
+        }
+      }
+
+      return result;
+    }
+
+    public static bool IsCubanPrime(int number)
+    {
+      // Of the form x 3 − y 3 x − y {\displaystyle {\tfrac {x^{3}-y^{3}}{x-y}}} where x = y + 1. 
+      int x = number;
+      int y = number - 1;
+      if (IsPrime(((x * x * x)-(y * y * y))/(x-y)))
+      {
+        return true;
+      }
+
+      x = number;
+      y = number - 2;
+      if (IsPrime(((x * x * x) - (y * y * y)) / (x - y)))
+      {
+        return true;
+      }
+
+      return false;
+    }
     /// <summary>
     /// Check if a number and number + 2 and number + 4 are all prime numbers.
     /// </summary>
