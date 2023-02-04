@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -220,21 +221,38 @@ namespace PrimeLibrary
       return result;
     }
 
-    public static IEnumerable<int> GetPrimeFromFile(string file)
+    public static IEnumerable<int> GetPrimeFromFile(string fileNameWithfullPath)
     {
-      List<int> result = new List<int>();
-      if (string.IsNullOrEmpty(file))
+      List<string> resultAsString = new List<string>();
+      List<int> resultAsInteger = new List<int>();
+      if (string.IsNullOrEmpty(fileNameWithfullPath))
       {
-        return result;
+        return resultAsInteger;
       }
 
-      // TODO
-      int[] test = new int[3];
-      test[0] = 1;
-      test[1] = 1;
-      test[2] = 1;
-      int[] test2 = new int[3] { 1,2,3};
-      return result;
+      try
+      {
+        using (StreamReader sr = new StreamReader(fileNameWithfullPath))
+        {
+          string line = string.Empty;
+          while ((line = sr.ReadLine()) != null)
+          {
+            resultAsString.Add(line);
+          }
+        }
+      }
+      catch (Exception)
+      {
+        return resultAsInteger;
+      }
+
+      foreach (string numberAsString in resultAsString)
+      {
+        _ = int.TryParse(numberAsString, out int tmpNumber);
+        resultAsInteger.Add(tmpNumber);
+      }
+
+      return resultAsInteger;
     }
   }
 }
