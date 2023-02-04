@@ -207,6 +207,22 @@ namespace PrimeLibrary
       return primes;
     }
 
+    public static List<ulong> GetPrimesBetweenTwoNumbers(ulong from, ulong to)
+    {
+      ulong count = to - from + 1;
+      var numbers = new List<ulong>();
+      for (ulong i = from; i <= to; i++)
+      {
+        numbers.Add(i);
+      }
+
+      var primes = numbers
+        .Where(n => IsPrime(n))
+                       .Select(n => n)
+                       .ToList();
+      return primes;
+    }
+
     public static List<int> GetPrimesBetweenTwoNumbersWithForLoop(int from, int to)
     {
       List<int> result = new List<int>();
