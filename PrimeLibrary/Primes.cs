@@ -198,7 +198,7 @@ namespace PrimeLibrary
 
     public static List<int> GetPrimesBetweenTwoNumbers(int from, int to)
     {
-      int count = to - from;
+      int count = to - from + 1;
       var primes = Enumerable.Range(from, count)
         .Where(n => IsPrime(n))
                        .Select(n => n)
@@ -217,6 +217,23 @@ namespace PrimeLibrary
         }
       }
 
+      return result;
+    }
+
+    public static IEnumerable<int> GetPrimeFromFile(string file)
+    {
+      List<int> result = new List<int>();
+      if (string.IsNullOrEmpty(file))
+      {
+        return result;
+      }
+
+      // TODO
+      int[] test = new int[3];
+      test[0] = 1;
+      test[1] = 1;
+      test[2] = 1;
+      int[] test2 = new int[3] { 1,2,3};
       return result;
     }
   }
