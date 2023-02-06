@@ -249,6 +249,33 @@ namespace PrimeLibrary
 
       return false;
     }
+
+    public static bool IsCullenPrime(int number)
+    {
+      // Of the form n×2n + 1. 
+      // the two first numbers are 3 and 393050634124102232869567034555427371542904833
+      int x = number;
+      return IsPrime((x * (2 * x)) + 1);
+    }
+
+    public static bool IsEmirp(int number)
+    {
+      // prime reverse is emirp
+      // IsPrime(int.Parse((string)number.ToString().Reverse())) doesn't work
+      return IsPrime(number) && IsPrime(int.Parse(ReverseString(number)));
+    }
+
+    public static string ReverseString(int number)
+    {
+      string result = string.Empty;
+      for (int i = number.ToString().Length - 1; i >= 0; i--)
+      {
+        result += number.ToString()[i];
+      }
+
+      return result;
+    }
+
     /// <summary>
     /// Check if a number and number + 2 and number + 4 are all prime numbers.
     /// </summary>
