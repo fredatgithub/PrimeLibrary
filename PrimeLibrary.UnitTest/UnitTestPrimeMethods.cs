@@ -211,5 +211,40 @@ namespace PrimeLibrary.UnitTest
       var result = Primes.ReverseString(source); 
       Assert.AreEqual(expected, result);
     }
+
+    [TestMethod]
+    [DataRow(2, 2)]
+    [DataRow(3, 6)]
+    [DataRow(4, 24)]
+    [DataRow(5, 120)]
+    [DataRow(6, 720)]
+    [DataRow(7, 5040)]
+    [DataRow(8, 40320)]
+    [DataRow(9, 362880)]
+    [DataRow(10, 3628800)]
+    [DataRow(11, 39916800)]
+    [DataRow(12, 479001600)]
+    public void TestMethod_Factorial(int source, int expected)
+    {
+      var result = Primes.Factorial(source);
+      Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    [DataRow(2, true)]
+    [DataRow(3, true)]
+    [DataRow(4, false)]
+    [DataRow(5, true)]
+    [DataRow(6, false)]
+    [DataRow(7, true)]
+    [DataRow(23, true)]
+    [DataRow(719, true)]
+    [DataRow(5039, true)]
+    public void TestMethod_IsFactorialPrime(int source, bool expected)
+    {
+      // 2, 3, 5, 7, 23, 719, 5039, 39916801, 479001599,
+      var result = Primes.IsFactorialPrime(source); 
+      Assert.AreEqual(expected, result);
+    }
   }
 }

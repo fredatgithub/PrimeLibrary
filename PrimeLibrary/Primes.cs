@@ -389,5 +389,35 @@ namespace PrimeLibrary
 
       return resultAsInteger;
     }
+
+    public static bool IsFactorialPrime(int number) 
+    {
+      // Of the form n! − 1 or n! + 1. 
+      return IsPrime(number) && IsFactorial(number);
+    }
+
+    public static bool IsFactorial(int number)
+    {
+      for (int i = 1; i < number; i++)
+      {
+        if (Factorial(i) == number + 1 || Factorial(i) == number - 1)
+        {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    public static int Factorial(int number)
+    {
+      int result = 1;
+      for (int i = 1; i <= number; i++)
+      {
+        result *= i;
+      }
+
+      return result;
+    }
   }
 }
