@@ -204,17 +204,6 @@ namespace PrimeLibrary.UnitTest
     }
 
     [TestMethod]
-    public void TestMethod_Reverse_for_IsEmirp() 
-    {
-      var source = 13;
-      var expected = 31;
-      string resultTmp2 = source.ToString();
-      string resultTmp = (string)resultTmp2.Reverse();
-      var result = int.Parse(resultTmp);
-      Assert.AreEqual(expected, result);
-    }
-
-    [TestMethod]
     public void TestMethod_ReverseString()
     {
       var source = 13;
