@@ -246,5 +246,22 @@ namespace PrimeLibrary.UnitTest
       var result = Primes.IsFactorialPrime(source); 
       Assert.AreEqual(expected, result);
     }
+
+    [TestMethod]
+    [TestCategory("GetAllPrimeFactorization")]
+    [DynamicData(nameof(GetExpectedResultsForPrimeFactorization), DynamicDataSourceType.Method)]
+    public void TestMethod_GetAllPrimeFactorization(int source, params int[] expected)
+    {
+      var result = Primes.GetAllPrimeFactorization(source); 
+      CollectionAssert.AreEquivalent(expected, result);
+    }
+
+
+    public static IEnumerable<object[]> GetExpectedResultsForPrimeFactorization()
+    {
+      yield return new object[] { 25, 5 };
+      yield return new object[] { 21, 3, 7 };
+      yield return new object[] { 33, 3, 11 };
+    }
   }
 }

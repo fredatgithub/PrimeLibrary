@@ -419,5 +419,38 @@ namespace PrimeLibrary
 
       return result;
     }
+
+    public static List<int> GetAllPrimeFactorization(int number)
+    {
+      // find all prime factorization if any
+      List<int> result = new List<int>();
+      for (int i = 2; i <= number; i++)
+      {
+        for (int j = 2; j <= number; j++)
+        {
+          if (IsPrime(i) && IsPrime(j) && i * j == number)
+          {
+            if (i == j && !result.Contains(i))
+            {
+              result.Add(i);
+            }
+            else
+            {
+              if (!result.Contains(i))
+              {
+                result.Add(i);
+              }
+
+              if (!result.Contains(i))
+              {
+                result.Add(j);
+              }
+            }
+          }
+        }
+      }
+
+      return result;
+    }
   }
 }
